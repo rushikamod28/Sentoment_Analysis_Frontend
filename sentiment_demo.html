@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis - Demo</title>
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .user-input {
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .submit-button,
+        .back-button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover,
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .chart-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        canvas#sentimentChart {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        #score-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .score-box {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sentiment Analysis - Demo</h1>
+    </header>
+    <textarea id="userInput" class="user-input" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+    <div class="button-container">
+        <button onclick="window.history.back()" class="back-button">Back</button>
+        <button onclick="submitDemo()" class="submit-button">Submit</button>
+    </div>
+    <div class="chart-container">
+        <canvas id="sentimentChart"></canvas>
+        <div id="score-container"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function submitDemo() {
+            const userInput = document.getElementById('userInput').value;
+
+            // Placeholder function to simulate fetching sentiment analysis scores
+            const positiveScore = Math.random().toFixed(2);
+            const negativeScore = Math.random().toFixed(2);
+            const neutralScore = Math.random().toFixed(2);
+
+            // Update scores
+            const scoreContainer = document.getElementById('score-container');
+            scoreContainer.innerHTML = `
+                <div class="score-box">Positive: ${positiveScore}</div>
+                <div class="score-box">Negative: ${negativeScore}</div>
+                <div class="score-box">Neutral: ${neutralScore}</div>
+            `;
+
+            // Display pie chart using Chart.js
+            const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+
+            new Chart(sentimentCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Positive', 'Negative', 'Neutral'],
+                    datasets: [{
+                        data: [positiveScore, negativeScore, neutralScore],
+                        backgroundColor: ['#28a745', '#dc3545', '#ffc107']
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Sentiment Analysis Scores'
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

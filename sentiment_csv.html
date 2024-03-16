@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis - CSV</title>
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .sub-header {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .center {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        .upload-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .upload-button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button,
+        .submit-button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover,
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        canvas {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .score-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .score-box {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sentiment Analysis</h1>
+    </header>
+    <div class="sub-header">
+        <p>Welcome to the Sentiment Analysis using CSV</p>
+    </div>
+    <div class="upload-container">
+        <label for="csvFile" class="upload-button">Upload CSV File</label>
+        <input type="file" id="csvFile" accept=".csv" style="display: none;">
+    </div>
+    <div class="button-container">
+        <button class="back-button" onclick="window.history.back()">Back</button>
+        <button class="submit-button" onclick="submitCSV()">Submit</button>
+    </div>
+    <div class="chart-container">
+        <canvas id="sentimentChart"></canvas>
+    </div>
+    <div class="score-container">
+        <div class="score-box" id="positiveScore">Positive: </div>
+        <div class="score-box" id="negativeScore">Negative: </div>
+        <div class="score-box" id="neutralScore">Neutral: </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function submitCSV() {
+            // Placeholder function to simulate fetching sentiment analysis scores
+            const positiveScore = Math.random().toFixed(2);
+            const negativeScore = Math.random().toFixed(2);
+            const neutralScore = Math.random().toFixed(2);
+
+            // Update scores
+            document.getElementById('positiveScore').innerText = `Positive: ${positiveScore}`;
+            document.getElementById('negativeScore').innerText = `Negative: ${negativeScore}`;
+            document.getElementById('neutralScore').innerText = `Neutral: ${neutralScore}`;
+
+            // Display pie chart using Chart.js
+            const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+
+            new Chart(sentimentCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Positive', 'Negative', 'Neutral'],
+                    datasets: [{
+                        data: [positiveScore, negativeScore, neutralScore],
+                        backgroundColor: ['#28a745', '#dc3545', '#ffc107']
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Sentiment Analysis Scores'
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+                    
